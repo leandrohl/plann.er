@@ -5,6 +5,7 @@
     <dimen name="xs_4dp">4dp</dimen>
     <dimen name="sm_8dp">8dp</dimen>
     <dimen name="md_16dp">16dp</dimen>
+    <dimen name="lg_24dp">16dp</dimen>
     <dimen name="xm_32dp">32dp</dimen>
     <dimen name="xxm_40dp">40dp</dimen>
     <dimen name="xxxm_48dp">48dp</dimen>
