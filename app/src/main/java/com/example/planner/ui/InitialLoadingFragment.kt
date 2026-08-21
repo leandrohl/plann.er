@@ -5,32 +5,36 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.planner.R
+import com.example.planner.databinding.FragmentInitialLoadingBinding
 import com.example.planner.databinding.FragmentUserRegistrationBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.milliseconds
 
-class UserRegistrationFragment : Fragment() {
-
-    private var _binding: FragmentUserRegistrationBinding? = null
+class InitialLoadingFragment : Fragment() {
+    private var _binding: FragmentInitialLoadingBinding? = null
     private val binding get() = _binding!!
 
-    private val navController by lazy { findNavController() }
+    private val navController by lazy { findNavController()}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentUserRegistrationBinding.inflate(inflater, container, false)
+        _binding = FragmentInitialLoadingBinding.inflate(inflater, container, false)
         return  binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        with (binding) {
-            btnSaveUser.setOnClickListener {
-                navController.navigate(R.id.action_userRegistrationFragment_to_homeFragment)
+        with(binding) {
+            lifecycleScope.launch {
+                delay(1_500.milliseconds)
+                navController.navigate(R.id.action_initialLoadingFragment_to_userRegistrationFragment)
             }
         }
     }
@@ -39,5 +43,4 @@ class UserRegistrationFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

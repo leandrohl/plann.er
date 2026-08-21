@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="@string/ola_usuario"
             android:textSize="16sp"
-            android:layout_marginStart="@dimen/lg_24dp"
+            android:layout_marginStart="@dimen/md_16dp"
             app:layout_constraintStart_toEndOf="@+id/mcvUserPhoto"
             app:layout_constraintTop_toTopOf="@+id/mcvUserPhoto"
             app:layout_constraintBottom_toBottomOf="@+id/mcvUserPhoto" />
@@ -58,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="@dimen/sm_8dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -141,6 +142,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/item_planner_activity"
             app:layout_constraintTop_toBottomOf="@+id/tvPlannerActivitiesTitle"
             tools:itemCount="8" />
 
