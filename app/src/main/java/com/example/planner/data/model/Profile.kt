@@ -1,0 +1,15 @@
+package com.example.planner.data.model
+
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class Profile(
+    val name: String = "",
+    val email: String = "",
+    val phone: String = "",
+    val image: String = "", // imagem no formato base64
+) {
+    fun isValid(): Boolean {
+        return name.isNotBlank() && email.isNotBlank() && phone.isNotBlank() && image.isNotBlank()
+    }
+}

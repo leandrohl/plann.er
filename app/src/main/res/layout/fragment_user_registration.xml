@@ -30,9 +30,15 @@
         <androidx.cardview.widget.CardView
             android:layout_width="@dimen/huge_128dp"
             android:layout_height="@dimen/huge_128dp"
-            android:contentDescription="@string/botao_adicionar_foto_de_usuario"
-            android:src="@drawable/img_add_button"
             app:cardCornerRadius="@dimen/xl_64dp">
+
+            <ImageView
+                android:id="@+id/ivAddPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/botao_adicionar_foto_de_usuario"
+                android:src="@drawable/img_add_button" />
 
         </androidx.cardview.widget.CardView>
 
@@ -43,7 +49,7 @@
             android:layout_marginVertical="@dimen/md_16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tiltName"
+                android:id="@+id/tietName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/nome"
@@ -59,7 +65,7 @@
             android:layout_marginVertical="@dimen/md_16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tiltEmail"
+                android:id="@+id/tietEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
@@ -74,7 +80,7 @@
             android:layout_marginVertical="@dimen/md_16dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tiltPhone"
+                android:id="@+id/tietPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/telefone"
@@ -86,12 +92,12 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSaveUser"
-        android:text="@string/salvar_usuario"
-        android:textColor="@color/lime_950"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/salvar_usuario"
+        android:textColor="@color/lime_950"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

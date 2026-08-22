@@ -35,6 +35,7 @@
                 android:id="@+id/ivUserPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="centerCrop"
                 android:src="@drawable/img_this_person_does_not_exist"
                 android:contentDescription="@string/imagem_foto_do_usuario"
                  />
@@ -43,7 +44,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:id="@+id/tvUserPhoto"
+            android:id="@+id/tvUserName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/ola_usuario"

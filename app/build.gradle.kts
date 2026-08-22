@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    kotlin("plugin.serialization") version "1.9.10"
 }
 
 android {
@@ -37,6 +38,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.datastore)
+    implementation(libs.datastore.preferences)
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.activity.ktx)
