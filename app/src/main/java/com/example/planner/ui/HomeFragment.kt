@@ -10,8 +10,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.planner.R
-import com.example.planner.data.utils.base64ToImageBitmap
+import com.example.planner.domain.utils.base64ToImageBitmap
 import com.example.planner.databinding.FragmentHomeBinding
+import com.example.planner.ui.component.PlannerActivityDatePickerDialogFragment
+import com.example.planner.ui.component.PlannerActivityTimePickerDialogFragment
 import com.example.planner.ui.viewmodel.UserRegistrationViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -38,6 +40,32 @@ class HomeFragment : Fragment() {
 
         setupObservers()
         with (binding) {
+            tietNewPlannerActivityDate.setOnClickListener {
+                PlannerActivityDatePickerDialogFragment(
+                    onConfirm = { year, month, dayOfMonth ->
+//                        tietNewPlannerActivityDate.setText(
+//                            getString(R.string.data_formatada, dayOfMonth, month + 1, year)
+//                        )
+                    },
+                    onCancel = {
+//                        tietNewPlannerActivityDate.text?.clear()
+                    }
+                ).show(childFragmentManager, PlannerActivityDatePickerDialogFragment.TAG)
+            }
+
+            tietNewPlannerActivityTime.setOnClickListener {
+                PlannerActivityTimePickerDialogFragment(
+                    onConfirm = { hour, minute ->
+//                        tietNewPlannerActivityDate.setText(
+//                            getString(R.string.data_formatada, dayOfMonth, month + 1, year)
+//                        )
+                    },
+                    onCancel = {
+//                        tietNewPlannerActivityDate.text?.clear()
+                    }
+                ).show(childFragmentManager, PlannerActivityTimePickerDialogFragment.TAG)
+            }
+
             btnSaveNewPlannerActivity.setOnClickListener {
                 UpdatePlannerActivityDialogFragment().show(
                     childFragmentManager,

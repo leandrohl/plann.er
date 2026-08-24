@@ -1,7 +1,7 @@
 package com.example.planner
 
 import android.app.Application
-import com.example.planner.data.di.MainServiceLocator
+import com.example.planner.core.di.MainServiceLocator
 
 class MainApplication: Application() {
     override fun onCreate() {

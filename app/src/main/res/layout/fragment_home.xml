@@ -90,9 +90,11 @@
                 android:layout_marginBottom="@dimen/sm_8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tiltNewPlannerActivityDate"
+                    android:id="@+id/tietNewPlannerActivityDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/escolha_a_data"
                     android:inputType="textEmailAddress" />
 
@@ -106,8 +108,10 @@
                 android:layout_marginBottom="@dimen/md_16dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tiltPlannerActivityTime"
+                    android:id="@+id/tietNewPlannerActivityTime"
                     android:layout_width="match_parent"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:layout_height="wrap_content"
                     android:hint="@string/escolha_o_horario"
                     />

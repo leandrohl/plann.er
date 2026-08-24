@@ -10,12 +10,11 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.planner.R
-import com.example.planner.data.utils.imageBitmapToBase64
-import com.example.planner.data.utils.imageUriToBitmap
+import com.example.planner.domain.utils.imageBitmapToBase64
+import com.example.planner.domain.utils.imageUriToBitmap
 import com.example.planner.databinding.FragmentUserRegistrationBinding
 import com.example.planner.ui.viewmodel.UserRegistrationViewModel
 import kotlinx.coroutines.launch

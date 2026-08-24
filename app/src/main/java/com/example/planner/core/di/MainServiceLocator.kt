@@ -1,4 +1,4 @@
-package com.example.planner.data.di
+package com.example.planner.core.di
 
 import android.app.Application
 import com.example.planner.data.datasource.AuthenticationLocalDataSource
