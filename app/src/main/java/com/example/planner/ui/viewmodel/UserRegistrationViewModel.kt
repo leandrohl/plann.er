@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.planner.data.datasource.AuthenticationLocalDataSource
 import com.example.planner.data.datasource.UserRegistrationLocalDataSource
 import com.example.planner.core.di.MainServiceLocator
-import com.example.planner.data.model.Profile
+import com.example.planner.domain.model.Profile
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow

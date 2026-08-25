@@ -11,6 +11,7 @@ constraintlayout = "2.2.2"
 navigation = "2.8.5"
 datastore = "1.1.1"
 kotlinXSerialization = "1.7.3"
+room = "2.6.1"
 
 [libraries]
 datastore = { group = "androidx.datastore", name = "datastore", version.ref = "datastore" }
@@ -26,6 +27,9 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
