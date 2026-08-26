@@ -1,4 +1,4 @@
-package com.example.planner.ui
+package com.example.planner.presentation.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,7 +16,7 @@ import com.example.planner.R
 import com.example.planner.domain.utils.imageBitmapToBase64
 import com.example.planner.domain.utils.imageUriToBitmap
 import com.example.planner.databinding.FragmentUserRegistrationBinding
-import com.example.planner.ui.viewmodel.UserRegistrationViewModel
+import com.example.planner.presentation.ui.viewmodel.UserRegistrationViewModel
 import kotlinx.coroutines.launch
 
 class UserRegistrationFragment : Fragment() {

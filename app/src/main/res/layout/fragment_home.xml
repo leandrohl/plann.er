@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/md_16dp"
-    tools:context=".ui.HomeFragment">
+    tools:context=".presentation.ui.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -144,12 +144,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/md_16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/tvPlannerActivitiesTitle"
             app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/item_planner_activity"
-            app:layout_constraintTop_toBottomOf="@+id/tvPlannerActivitiesTitle"
-            tools:itemCount="8" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:itemCount="8"
+            tools:listitem="@layout/item_planner_activity"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

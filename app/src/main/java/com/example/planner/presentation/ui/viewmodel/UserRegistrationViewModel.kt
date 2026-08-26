@@ -1,4 +1,4 @@
-package com.example.planner.ui.viewmodel
+package com.example.planner.presentation.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package com.example.planner.ui
+package com.example.planner.presentation.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.planner.R
 import com.example.planner.databinding.FragmentInitialLoadingBinding
-import com.example.planner.ui.viewmodel.UserRegistrationViewModel
+import com.example.planner.presentation.ui.viewmodel.UserRegistrationViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.milliseconds

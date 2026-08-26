@@ -1,4 +1,4 @@
-package com.example.planner.ui
+package com.example.planner.presentation.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -12,19 +12,21 @@ import androidx.lifecycle.lifecycleScope
 import com.example.planner.R
 import com.example.planner.domain.utils.base64ToImageBitmap
 import com.example.planner.databinding.FragmentHomeBinding
-import com.example.planner.ui.component.PlannerActivityDatePickerDialogFragment
-import com.example.planner.ui.component.PlannerActivityTimePickerDialogFragment
-import com.example.planner.ui.viewmodel.UserRegistrationViewModel
+import com.example.planner.presentation.ui.component.PlannerActivityAdapter
+import com.example.planner.presentation.ui.component.PlannerActivityDatePickerDialogFragment
+import com.example.planner.presentation.ui.component.PlannerActivityTimePickerDialogFragment
+import com.example.planner.presentation.ui.viewmodel.UserRegistrationViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
-
+import com.example.planner.presentation.ui.viewmodel.PlannerActivityViewModel
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    val userRegistrationViewModel: UserRegistrationViewModel by activityViewModels() // gera um escopo de activity unica
+    private val userRegistrationViewModel by activityViewModels<UserRegistrationViewModel>()
+    private val plannerActivityViewModel by activityViewModels<PlannerActivityViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +42,8 @@ class HomeFragment : Fragment() {
 
         setupObservers()
         with (binding) {
+            plannerActivityViewModel.fetchActivities()
+
             tietNewPlannerActivityDate.setOnClickListener {
                 PlannerActivityDatePickerDialogFragment(
                     onConfirm = { year, month, dayOfMonth ->
@@ -92,6 +96,18 @@ class HomeFragment : Fragment() {
                     Log.d("CheckIsTokenValid", "setupObservers: isTokenValid: $isTokenValid")
                     if (isTokenValid == false) {
                         showNewTokenSnackBar()
+                    }
+                }
+            }
+            launch {
+                plannerActivityViewModel.activities.collect { activities ->
+                    with(binding) {
+                        if(rvPlannerActivities.adapter == null) {
+                            rvPlannerActivities.adapter = PlannerActivityAdapter()
+                        }
+                        (rvPlannerActivities.adapter as PlannerActivityAdapter).submitList(
+                            activities
+                        )
                     }
                 }
             }

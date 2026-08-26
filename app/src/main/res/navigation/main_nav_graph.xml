@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/initialLoadingFragment"
-        android:name="com.example.planner.ui.InitialLoadingFragment"
+        android:name="com.example.planner.presentation.ui.InitialLoadingFragment"
         android:label="fragment_initial_loading"
         tools:layout="@layout/fragment_initial_loading">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/userRegistrationFragment"
-        android:name="com.example.planner.ui.UserRegistrationFragment"
+        android:name="com.example.planner.presentation.ui.UserRegistrationFragment"
         android:label="fragment_user_registration"
         tools:layout="@layout/fragment_user_registration" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.planner.ui.HomeFragment"
+        android:name="com.example.planner.presentation.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action

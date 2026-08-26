@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/md_16dp"
-    tools:context=".ui.UserRegistrationFragment">
+    tools:context=".presentation.ui.UserRegistrationFragment">
 
     <TextView
         android:id="@+id/tvUserRegistrationTitle"

@@ -1,4 +1,4 @@
-package com.example.planner.ui
+package com.example.planner.presentation.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
