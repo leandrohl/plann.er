@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     kotlin("plugin.serialization") version "1.9.10"
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -40,7 +41,7 @@ android {
 dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-//    ksp(libs.room.compiler)
+    ksp(libs.room.compiler)
 
     implementation(libs.datastore)
     implementation(libs.datastore.preferences)
