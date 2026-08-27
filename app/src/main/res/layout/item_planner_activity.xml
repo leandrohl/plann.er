@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/clPlannerActivityContainer"
     android:padding="@dimen/md_16dp"
     android:layout_margin="@dimen/xs_4dp"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_activity">
 
     <ImageView
-        android:id="@+id/ivStatus"
+        android:id="@+id/ivIsCompleted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/botao_de_conclusao_de_atividade"
@@ -25,7 +26,7 @@
         android:layout_marginHorizontal="@dimen/md_16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvDateTime"
-        app:layout_constraintStart_toEndOf="@+id/ivStatus"
+        app:layout_constraintStart_toEndOf="@+id/ivIsCompleted"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Academia em grupo" />
 

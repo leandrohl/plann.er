@@ -7,9 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.planner.R
 import com.example.planner.databinding.FragmentUpdatePlannerActivityDialogBinding
+import com.example.planner.domain.model.PlannerActivity
+import com.example.planner.domain.utils.createCalendarFromTimeInMillis
+import com.example.planner.domain.utils.toPlannerActivityDateString
+import com.example.planner.domain.utils.toPlannerActivityTimeString
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class UpdatePlannerActivityDialogFragment : BottomSheetDialogFragment() {
+class UpdatePlannerActivityDialogFragment(
+    private val selectedActivity: PlannerActivity
+) : BottomSheetDialogFragment() {
     private var _binding: FragmentUpdatePlannerActivityDialogBinding? = null
     private val binding get() = _binding!!
 
@@ -26,8 +32,10 @@ class UpdatePlannerActivityDialogFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with (binding) {
-            // TODO: lógica da tela de atualização de atividade do planner
-
+            val selectedActivityDateTimeCalendar = createCalendarFromTimeInMillis(timeInMillis = selectedActivity.datetime)
+            tietUpdatedPlannerActivityName.setText(selectedActivity.name)
+            tietUpdatedPlannerActivityDate.setText(selectedActivityDateTimeCalendar.toPlannerActivityDateString())
+            tietUpdatedPlannerActivityTime.setText(selectedActivityDateTimeCalendar.toPlannerActivityTimeString())
         }
     }
 

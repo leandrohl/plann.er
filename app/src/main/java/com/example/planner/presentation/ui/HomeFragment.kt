@@ -1,25 +1,34 @@
 package com.example.planner.presentation.ui
 
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.planner.R
 import com.example.planner.domain.utils.base64ToImageBitmap
 import com.example.planner.databinding.FragmentHomeBinding
+import com.example.planner.domain.utils.toPlannerActivityDateString
+import com.example.planner.domain.utils.toPlannerActivityTimeString
 import com.example.planner.presentation.ui.component.PlannerActivityAdapter
 import com.example.planner.presentation.ui.component.PlannerActivityDatePickerDialogFragment
 import com.example.planner.presentation.ui.component.PlannerActivityTimePickerDialogFragment
+import com.example.planner.presentation.ui.extension.hideKeyboard
 import com.example.planner.presentation.ui.viewmodel.UserRegistrationViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import com.example.planner.presentation.ui.viewmodel.PlannerActivityViewModel
+import com.example.planner.presentation.ui.viewmodel.SetDate
+import com.example.planner.presentation.ui.viewmodel.SetTime
+
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -44,12 +53,36 @@ class HomeFragment : Fragment() {
         with (binding) {
             plannerActivityViewModel.fetchActivities()
 
+            clHomeContainer.setOnClickListener {
+                tietNewPlannerActivityName.clearFocus()
+                requireContext().hideKeyboard(fromView = tietNewPlannerActivityName)
+            }
+
+            tietNewPlannerActivityName.doOnTextChanged { text, _, _, _ ->
+                if (text.toString().isEmpty()) {
+                    tietNewPlannerActivityName.clearFocus()
+                    requireContext().hideKeyboard(fromView = tietNewPlannerActivityName)
+                }
+                plannerActivityViewModel.updateNewActivity(name = text.toString())
+            }
+
             tietNewPlannerActivityDate.setOnClickListener {
                 PlannerActivityDatePickerDialogFragment(
                     onConfirm = { year, month, dayOfMonth ->
-//                        tietNewPlannerActivityDate.setText(
-//                            getString(R.string.data_formatada, dayOfMonth, month + 1, year)
-//                        )
+                        val filledCalendar = Calendar.getInstance().apply {
+                            set(Calendar.YEAR, year)
+                            set(Calendar.MONTH, month)
+                            set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                        }
+
+                        tietNewPlannerActivityDate.setText(filledCalendar.toPlannerActivityDateString())
+                        plannerActivityViewModel.updateNewActivity(
+                            date = SetDate(
+                                year = year,
+                                month = month,
+                                dayOfMonth = dayOfMonth
+                            )
+                        )
                     },
                     onCancel = {
 //                        tietNewPlannerActivityDate.text?.clear()
@@ -59,10 +92,19 @@ class HomeFragment : Fragment() {
 
             tietNewPlannerActivityTime.setOnClickListener {
                 PlannerActivityTimePickerDialogFragment(
-                    onConfirm = { hour, minute ->
-//                        tietNewPlannerActivityDate.setText(
-//                            getString(R.string.data_formatada, dayOfMonth, month + 1, year)
-//                        )
+                    onConfirm = { hourOfDay, minute->
+                        val filledCalendar = Calendar.getInstance().apply {
+                            set(Calendar.HOUR_OF_DAY, hourOfDay)
+                            set(Calendar.MINUTE, minute)
+                        }
+
+                        tietNewPlannerActivityTime.setText(filledCalendar.toPlannerActivityTimeString())
+                        plannerActivityViewModel.updateNewActivity(
+                            time = SetTime(
+                                hourOfDay = hourOfDay,
+                                minute = minute
+                            )
+                        )
                     },
                     onCancel = {
 //                        tietNewPlannerActivityDate.text?.clear()
@@ -71,12 +113,26 @@ class HomeFragment : Fragment() {
             }
 
             btnSaveNewPlannerActivity.setOnClickListener {
-                UpdatePlannerActivityDialogFragment().show(
-                    childFragmentManager,
-                    UpdatePlannerActivityDialogFragment.TAG
+                plannerActivityViewModel.saveNewActivity(
+                    onSuccess = {
+                        clearNewPlannerActivityFields()
+                    },
+                    onError = {
+                        Toast.makeText(requireContext(),
+                            "Oops,... Houve uma falha ao salvar a atividade.",
+                            Toast.LENGTH_SHORT).show()
+                    }
                 )
             }
         }
+    }
+
+    private fun FragmentHomeBinding.clearNewPlannerActivityFields() {
+        tietNewPlannerActivityName.text?.clear()
+        tietNewPlannerActivityDate.text?.clear()
+        tietNewPlannerActivityTime.text?.clear()
+
+        tietNewPlannerActivityName.clearFocus()
     }
 
     private fun setupObservers() {
@@ -103,7 +159,22 @@ class HomeFragment : Fragment() {
                 plannerActivityViewModel.activities.collect { activities ->
                     with(binding) {
                         if(rvPlannerActivities.adapter == null) {
-                            rvPlannerActivities.adapter = PlannerActivityAdapter()
+                            rvPlannerActivities.adapter = PlannerActivityAdapter(
+                                onClickPlannerActivity = { selectedActivity ->
+                                    UpdatePlannerActivityDialogFragment(
+                                        selectedActivity = selectedActivity,
+                                    ).show(
+                                        childFragmentManager,
+                                        UpdatePlannerActivityDialogFragment.TAG
+                                    )
+                                },
+                                onChangeIsCompleted = { updatedIsCompleted, selectedActivity ->
+                                    plannerActivityViewModel.updateIsCompleted(
+                                        uuid = selectedActivity.uuid,
+                                        isCompleted = updatedIsCompleted,
+                                    )
+                                }
+                            )
                         }
                         (rvPlannerActivities.adapter as PlannerActivityAdapter).submitList(
                             activities
