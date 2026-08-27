@@ -3,15 +3,11 @@ package com.example.planner.presentation.ui
 import android.content.DialogInterface
 import android.icu.util.Calendar
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
-import com.example.planner.MainActivity
-import com.example.planner.R
 import com.example.planner.databinding.FragmentUpdatePlannerActivityDialogBinding
 import com.example.planner.domain.model.PlannerActivity
 import com.example.planner.domain.utils.createCalendarFromTimeInMillis
@@ -69,6 +65,7 @@ class UpdatePlannerActivityDialogFragment(
 
             tietUpdatedPlannerActivityDate.setOnClickListener {
                 PlannerActivityDatePickerDialogFragment(
+                    initialDate = createCalendarFromTimeInMillis(selectedActivity.datetime),
                     onConfirm = { year, month, dayOfMonth ->
                         val filledCalendar = Calendar.getInstance().apply {
                             set(Calendar.YEAR, year)
@@ -86,13 +83,13 @@ class UpdatePlannerActivityDialogFragment(
                         )
                     },
                     onCancel = {
-//                        tietNewPlannerActivityDate.text?.clear()
                     }
                 ).show(childFragmentManager, PlannerActivityDatePickerDialogFragment.TAG)
             }
 
             tietUpdatedPlannerActivityTime.setOnClickListener {
                 PlannerActivityTimePickerDialogFragment(
+                    initialTime = createCalendarFromTimeInMillis(selectedActivity.datetime),
                     onConfirm = { hourOfDay, minute->
                         val filledCalendar = Calendar.getInstance().apply {
                             set(Calendar.HOUR_OF_DAY, hourOfDay)
@@ -108,7 +105,6 @@ class UpdatePlannerActivityDialogFragment(
                         )
                     },
                     onCancel = {
-//                        tietNewPlannerActivityDate.text?.clear()
                     }
                 ).show(childFragmentManager, PlannerActivityTimePickerDialogFragment.TAG)
             }
