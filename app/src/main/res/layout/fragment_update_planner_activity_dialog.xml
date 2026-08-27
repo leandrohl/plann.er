@@ -55,6 +55,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietUpdatedPlannerActivityDate"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapSentences"
@@ -73,6 +75,8 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tietUpdatedPlannerActivityTime"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="21:00" />
